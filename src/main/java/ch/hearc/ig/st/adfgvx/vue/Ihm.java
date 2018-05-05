@@ -7,6 +7,7 @@ public class Ihm {
   Scanner sc = new Scanner(System.in);
   String p1;
   String phrase;
+  String cle;
 
   public void menu() {
     while (true) {
@@ -26,13 +27,17 @@ public class Ihm {
         case '1':
           System.out.println("Veuillez saisir la phrase à chiffrer :");
           phrase = sc.nextLine();
-          phrase = Adfgvx.chiffrerPhrase(phrase);
+          System.out.println("Veuillez saisir la clé de chiffrement :");
+          cle = sc.nextLine();
+          phrase = Adfgvx.chiffrerPhrase(phrase,cle);
           System.out.println("Votre phrase chiffrée est : "+phrase);
           break;
         case '2':
           System.out.println("Veuillez saisir la phrase à déchiffrer :");
           phrase = sc.nextLine();
-          phrase = Adfgvx.dechiffrerPhrase(phrase);
+          System.out.println("Veuillez saisir la clé de chiffrement :");
+          cle = sc.nextLine();
+          phrase = Adfgvx.dechiffrerPhrase(phrase,cle);
           System.out.println("Votre phrase déchiffrée est : "+phrase);
           break;
         case '0':
