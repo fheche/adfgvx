@@ -2,18 +2,45 @@ package ch.hearc.ig.st.adfgvx.metier;
 
 public class Adfgvx {
   private static String[][] tableauSubstitution=new String[6][6];
+  private static String cleChiffrement="";
 
   public static String chiffrerPhrase(String phraseADechiffrer, String cle){
-    init();
+    initialiseTableauSubstitution();
+    definiCleTableau(cle);
     return "";
+  }
+
+  private static void definiCleTableau(String cle) {
+    String cleTemporaire="";
+
+    // Passe la clé en majuscule
+    cle=cle.toUpperCase();
+
+    System.out.println("La clé passée est : "+cle);
+
+    // Complète par les lettres (ADFGVX) afin qu'il y ait au minimum 6 lettres
+    cleTemporaire=cle+"ADFGVX";
+    System.out.println("Ajout des lettres ADFGVX pour en avoir minimum 6 différentes : "+cleTemporaire);
+
+
+    // Enlève les lettres redondantes
+    for(int i=0;i<cleTemporaire.length();++i){
+      if(!cleChiffrement.contains(String.valueOf(cleTemporaire.charAt(i)))){
+        cleChiffrement+=cleTemporaire.charAt(i);
+      }
+    }
+    System.out.println("Les lettres redondantes sont enlevées : "+cleChiffrement);
+
+    // On ne prends que les 6 premiers caractères
+    cleChiffrement=cleChiffrement.substring(0,6);
+    System.out.println("On ne prends que les 6 premiers caractères, la clé est donc : "+cleChiffrement);
   }
 
   public static String dechiffrerPhrase(String phraseADechiffrer, String cle){
-    init();
     return "";
   }
 
-  private static void init(){
+  private static void initialiseTableauSubstitution(){
     // Initilisation du tableau de substitution
     // 8  T  B  W  R  Q
     // P  4  C  G  2  9
