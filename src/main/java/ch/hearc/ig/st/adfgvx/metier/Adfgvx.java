@@ -7,7 +7,34 @@ public class Adfgvx {
   public static String chiffrerPhrase(String phraseADechiffrer, String cle){
     initialiseTableauSubstitution();
     definiCleTableau(cle);
+    trierTableau();
     return "";
+  }
+
+  public static String dechiffrerPhrase(String phraseADechiffrer, String cle){
+    return "";
+  }
+
+  private static void trierTableau() {
+    System.out.println("La clé est associée au tableau : ");
+    System.out.print(cleChiffrement.charAt(0)+"  ");
+    System.out.print(cleChiffrement.charAt(1)+"  ");
+    System.out.print(cleChiffrement.charAt(2)+"  ");
+    System.out.print(cleChiffrement.charAt(3)+"  ");
+    System.out.print(cleChiffrement.charAt(4)+"  ");
+    System.out.print(cleChiffrement.charAt(5)+"\n");
+    afficherTableau();
+
+    // A faire : Il faut ici trier le tableau selon la clé
+
+    System.out.println("Puis le tableau est trié selon la clé (alphabétiquement): ");
+    System.out.print(cleChiffrement.charAt(0)+"  ");
+    System.out.print(cleChiffrement.charAt(1)+"  ");
+    System.out.print(cleChiffrement.charAt(2)+"  ");
+    System.out.print(cleChiffrement.charAt(3)+"  ");
+    System.out.print(cleChiffrement.charAt(4)+"  ");
+    System.out.print(cleChiffrement.charAt(5)+"\n");
+    afficherTableau();
   }
 
   private static void definiCleTableau(String cle) {
@@ -34,10 +61,6 @@ public class Adfgvx {
     // On ne prends que les 6 premiers caractères
     cleChiffrement=cleChiffrement.substring(0,6);
     System.out.println("On ne prends que les 6 premiers caractères, la clé est donc : "+cleChiffrement);
-  }
-
-  public static String dechiffrerPhrase(String phraseADechiffrer, String cle){
-    return "";
   }
 
   private static void initialiseTableauSubstitution(){
@@ -91,6 +114,11 @@ public class Adfgvx {
     tableauSubstitution[5][5]="f";
 
     System.out.println("Tableau de substitution utilisé :");
+    afficherTableau();
+  }
+
+  private static void afficherTableau(){
+    // Parcours le tableau de substitution et l'affiche
     for(int i=0;i<6;++i){
       for(int j=0;j<6;++j){
         System.out.print(tableauSubstitution[i][j]+"  ");
