@@ -17,15 +17,42 @@ public class Adfgvx {
 
   private static void trierTableau() {
     System.out.println("La clé est associée au tableau : ");
-    System.out.print(cleChiffrement.charAt(0)+"  ");
-    System.out.print(cleChiffrement.charAt(1)+"  ");
-    System.out.print(cleChiffrement.charAt(2)+"  ");
-    System.out.print(cleChiffrement.charAt(3)+"  ");
-    System.out.print(cleChiffrement.charAt(4)+"  ");
-    System.out.print(cleChiffrement.charAt(5)+"\n");
+    System.out.print(cleChiffrement.charAt(0) + "  ");
+    System.out.print(cleChiffrement.charAt(1) + "  ");
+    System.out.print(cleChiffrement.charAt(2) + "  ");
+    System.out.print(cleChiffrement.charAt(3) + "  ");
+    System.out.print(cleChiffrement.charAt(4) + "  ");
+    System.out.print(cleChiffrement.charAt(5) + "\n");
     afficherTableau();
 
     // A faire : Il faut ici trier le tableau selon la clé
+    String[][] tableauSubstitutionTmp = new String[6][6];
+    String lettresCle = cleChiffrement.toUpperCase();
+    cleChiffrement="";
+    String lettreSuivante;
+    int indiceLettre = 0;
+
+    // Parcours les lettres de la clé
+    for (int i = 0; i < 6; ++i) {
+
+      lettreSuivante = String.valueOf(lettresCle.charAt(0));
+      indiceLettre = 0;
+      for (int j = 0; j < lettresCle.length(); ++j) {
+        // Si la lettre est plus petite (alphabétiquement)
+        if (lettresCle.charAt(j) < lettreSuivante.charAt(0)) {
+          // Affecte la lettre et l'indice
+          lettreSuivante = String.valueOf(lettresCle.charAt(j));
+          indiceLettre = j;
+        }
+      }
+      for(int j=0;j<6;++j){
+        tableauSubstitutionTmp[j][i]=tableauSubstitution[j][indiceLettre];
+      }
+      cleChiffrement+=lettresCle.substring(indiceLettre,indiceLettre+1);
+      lettresCle = lettresCle.substring(0, indiceLettre) + String.valueOf((char)123) +lettresCle.substring(indiceLettre + 1, lettresCle.length());
+
+    }
+    tableauSubstitution=tableauSubstitutionTmp;
 
     System.out.println("Puis le tableau est trié selon la clé (alphabétiquement): ");
     System.out.print(cleChiffrement.charAt(0)+"  ");
