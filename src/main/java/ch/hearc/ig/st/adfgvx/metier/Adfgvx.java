@@ -6,6 +6,7 @@ public class Adfgvx {
   private static String cleChiffrement = "";
 
   public static String chiffrerPhrase(String phraseADechiffrer, String cle) {
+    cleChiffrement = "";
     initialiseTableauSubstitution();
     definiCleTableau(cle);
     trierTableau();
@@ -13,7 +14,46 @@ public class Adfgvx {
   }
 
   public static String dechiffrerPhrase(String phraseADechiffrer, String cle) {
-    return "";
+    cleChiffrement = "";
+    initialiseTableauSubstitution();
+    definiCleTableau(cle);
+    trierTableau();
+    return dechiffrerPhrase(phraseADechiffrer);
+  }
+
+  private static String dechiffrerPhrase(String phraseADechiffrer) {
+    String phraseDechiffreeTmp = "";
+    String phraseDechiffree = "";
+
+    // Transforme les lettres ADFGVX en indices
+    for (int i = 0; i < phraseADechiffrer.length(); ++i) {
+      switch (phraseADechiffrer.charAt(i)) {
+        case 'A':
+          phraseDechiffreeTmp += '0';
+          break;
+        case 'D':
+          phraseDechiffreeTmp += '1';
+          break;
+        case 'F':
+          phraseDechiffreeTmp += '2';
+          break;
+        case 'G':
+          phraseDechiffreeTmp += '3';
+          break;
+        case 'V':
+          phraseDechiffreeTmp += '4';
+          break;
+        case 'X':
+          phraseDechiffreeTmp += '5';
+          break;
+      }
+    }
+
+    for (int i = 0; i < phraseDechiffreeTmp.length(); i+=2) {
+      phraseDechiffree+=tableauSubstitution[Integer.valueOf(phraseDechiffreeTmp.charAt(i)-'0')][Integer.valueOf(phraseDechiffreeTmp.charAt(i+1)-'0')];
+    }
+
+    return phraseDechiffree;
   }
 
   private static String chiffrerPhrase(String phraseAChiffrer) {
@@ -127,7 +167,7 @@ public class Adfgvx {
   }
 
   private static void initialiseTableauSubstitution() {
-    // Initilisation du tableau de substitution
+    // Initialisation du tableau de substitution
     // 8  T  B  W  R  Q
     // P  4  C  G  2  9
     // 3  O  5  M  X  E
