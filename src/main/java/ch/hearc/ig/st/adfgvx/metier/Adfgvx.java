@@ -57,8 +57,59 @@ public class Adfgvx {
     }
 
     //A faire : Permuter le tableau selon l'ordre alphabétique
+    // Revoir le code si dessous
 
-    return "";
+    String[][] tableauPermute = new String[6][cle.length()];
+    String lettresCle = cle.toUpperCase();
+    cle = "";
+    String lettreSuivante;
+    int indiceLettre = 0;
+
+    // Parcours les lettres de la clé
+    for (int i = 0; i < lettresCle.length(); ++i) {
+
+      lettreSuivante = String.valueOf(lettresCle.charAt(0));
+      indiceLettre = 0;
+      for (int j = 0; j < lettresCle.length(); ++j) {
+        // Si la lettre est plus petite (alphabétiquement)
+        if (lettresCle.charAt(j) < lettreSuivante.charAt(0)) {
+          // Affecte la lettre et l'indice
+          lettreSuivante = String.valueOf(lettresCle.charAt(j));
+          indiceLettre = j;
+        }
+      }
+      for (int j = 0; j < 6; ++j) {
+        tableauPermute[j][i] = tableauReponse[j][indiceLettre];
+      }
+      cle += lettresCle.substring(indiceLettre, indiceLettre + 1);
+      lettresCle = lettresCle.substring(0, indiceLettre) + String.valueOf((char) 123) + lettresCle
+          .substring(indiceLettre + 1, lettresCle.length());
+
+    }
+
+    System.out.println("Le tableau est permuté selon l'ordre alphabétique de la clé");
+    // Affichage de la clé
+    for(int i=0;i<cle.length();++i){
+      System.out.print(String.valueOf(cle.charAt(i)).toUpperCase()+"  ");
+    }
+    System.out.print("\n");
+
+    // Affichage du tableau
+    for (int i = 0; i < 6; ++i) {
+      for(int j=0;j<cle.length();++j){
+        System.out.print(tableauPermute[i][j]+"  ");
+      }
+      System.out.print("\n");
+    }
+
+    String phrasePermutee ="";
+    for(int i=0;i<6;++i){
+      for (int j = 0; j < lettresCle.length(); ++j) {
+        phrasePermutee+= tableauPermute[i][j];
+      }
+    }
+
+    return phrasePermutee;
   }
 
   private static String ajouteLettreAleatoire() {
