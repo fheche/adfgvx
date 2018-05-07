@@ -30,7 +30,6 @@ public class Ihm {
           System.out.println("Veuillez saisir la clé de chiffrement :");
           cle = sc.nextLine();
           phrase = Adfgvx.chiffrerPhrase(phrase,cle);
-          System.out.println("Votre phrase chiffrée est : "+phrase);
           break;
         case '2':
           System.out.println("Veuillez saisir la phrase à déchiffrer :");
