@@ -18,15 +18,6 @@ public class Adfgvx {
   private static String permuterSelonCle(String phraseChiffree, String cle) {
 
     System.out.println("La clé utilisée est : " + cle);
-    // Enlève les lettres redondantes
-    String cleTmp=cle;
-    cle="";
-    for (int i = 0; i < cleTmp.length(); ++i) {
-      if (!cle.contains(String.valueOf(cleTmp.charAt(i)))) {
-        cle += cleTmp.charAt(i);
-      }
-    }
-    System.out.println("Les lettres redondantes de la clé sont enlevées : " + cle);
 
     String[][] tableauReponse = new String[6][cle.length()];
     int indicePhraseChiffree=0;
@@ -55,9 +46,6 @@ public class Adfgvx {
       }
       System.out.print("\n");
     }
-
-    //A faire : Permuter le tableau selon l'ordre alphabétique
-    // Revoir le code si dessous
 
     String[][] tableauPermute = new String[6][cle.length()];
     String lettresCle = cle.toUpperCase();
@@ -103,9 +91,9 @@ public class Adfgvx {
     }
 
     String phrasePermutee ="";
-    for(int i=0;i<6;++i){
-      for (int j = 0; j < lettresCle.length(); ++j) {
-        phrasePermutee+= tableauPermute[i][j];
+    for (int i = 0; i < lettresCle.length(); ++i) {
+      for(int j=0;j<6;++j){
+        phrasePermutee+= tableauPermute[j][i];
       }
     }
 
