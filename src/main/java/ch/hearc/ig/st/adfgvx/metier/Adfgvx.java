@@ -147,12 +147,12 @@ public class Adfgvx {
     String[][] tableauReponse = new String[6][cle.length()];
     int indicePhraseChiffree=0;
 
-    for (int i = 0; i < 6; ++i) {
-      for(int j=0;j<cle.length();++j){
+    for(int i=0;i<cle.length();++i){
+      for (int j = 0; j < 6; ++j) {
         if(indicePhraseChiffree>=phraseChiffree.length()){
-          tableauReponse[i][j]=ajouteLettreAleatoire();
+          tableauReponse[j][i]=ajouteLettreAleatoire();
         }else{
-          tableauReponse[i][j]=String.valueOf(phraseChiffree.charAt(indicePhraseChiffree++));
+          tableauReponse[j][i]=String.valueOf(phraseChiffree.charAt(indicePhraseChiffree++));
         }
       }
     }
