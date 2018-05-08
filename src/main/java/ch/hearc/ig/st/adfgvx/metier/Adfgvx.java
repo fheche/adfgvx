@@ -19,7 +19,11 @@ public class Adfgvx {
   public static String dechiffrerPhrase(String phraseADechiffrer, String cle) {
     String phrasePermutee = "";
     phrasePermutee = remettreReponseSelonCle(phraseADechiffrer,cle);
-    return "";
+    System.out.println("La phrase à déchiffrée est "+phrasePermutee);
+    initialiseTableauSubstitution();
+    System.out.println("On déchiffre selon le tableau de substitution");
+    String phraseDechiffree=dechiffrerPhrase(phrasePermutee);
+    return phraseDechiffree;
   }
 
   private static String remettreReponseSelonCle(String phraseADechiffrer, String cle) {
@@ -108,6 +112,8 @@ public class Adfgvx {
     }
     cleDansLOrdre = cleDansLOrdreTmp;
 
+    System.out.println("Puis le tableau est trié selon la clé");
+
     // Affichage de la clé
     for(int i=0;i<cleDansLOrdre.length();++i){
       System.out.print(String.valueOf(cleDansLOrdre.charAt(i)).toUpperCase()+"  ");
@@ -122,7 +128,15 @@ public class Adfgvx {
       System.out.print("\n");
     }
 
-    return "";
+    // Construction de la chaine de réponse
+    phraseADechiffrer = "";
+    for(int i=0;i<cle.length();++i){
+      for (int j = 0; j < 6; ++j) {
+        phraseADechiffrer += tableauReponse[j][i];
+      }
+    }
+
+    return phraseADechiffrer;
   }
 
   private static String permuterSelonCle(String phraseChiffree, String cle) {
