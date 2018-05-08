@@ -53,18 +53,21 @@ public class Adfgvx {
     System.out.println("La clé passée ("+cleDansLOrdre+") est passée dans l'ordre alphabétique ("+cle+")");
 
     String[][] tableauPermute = new String[6][cle.length()];
-    // Passe la phrase dans un tableau
-    int k=0;
+    // -----------------------------------------------------
+    // ----- PASSE LA PHRASE DANS UN TABLEAU ---------------
+    // -----------------------------------------------------
+    int compteur=0;
     for(int i=0;i<cle.length();++i) {
       for(int j=0;j<6;++j){
-        if(phraseADechiffrer.length()>k) {
-          tableauPermute[j][i] = String.valueOf(phraseADechiffrer.charAt(k++));
+        if(phraseADechiffrer.length()>compteur) {
+          tableauPermute[j][i] = String.valueOf(phraseADechiffrer.charAt(compteur++));
         }else{
           tableauPermute[j][i] = "X";
         }
       }
     }
     System.out.println("Cette nouvelle clé est associée à un tableau avec la phrase codée");
+
     // Affichage de la clé
     for(int i=0;i<cle.length();++i){
       System.out.print(String.valueOf(cle.charAt(i)).toUpperCase()+"  ");
@@ -79,13 +82,54 @@ public class Adfgvx {
       System.out.print("\n");
     }
 
+    // -----------------------------------------------------
+    // ----- REMETS LE TABLEAU DANS L'ORDRE SELON LA CLE ---
+    // -----------------------------------------------------
+    String[][] tableauReponse = new String[6][cle.length()];
+    lettresCle = cle.toUpperCase();
+    String cleDansLOrdreTmp = cleDansLOrdre;
+    // Parcours les lettres de la clé
+    for (int i = 0; i < cle.length(); ++i) {
+
+      lettreSuivante = String.valueOf(lettresCle.charAt(0));
+      indiceLettre = 0;
+      for (int j = 0; j < cleDansLOrdre.length(); ++j) {
+        // Si la lettre est plus petite (alphabétiquement)
+        if (cleDansLOrdre.charAt(j) == lettreSuivante.charAt(0)){
+          indiceLettre = j;
+        }
+      }
+      for (int j = 0; j < 6; ++j) {
+        tableauReponse[j][indiceLettre] = tableauPermute[j][i];
+      }
+      lettresCle = lettresCle.substring(1, lettresCle.length());
+      // Remplace la lettre afin de ne pas retombé dessus s'il y en a plusieurs
+      cleDansLOrdre = cleDansLOrdre.substring(0, indiceLettre) + String.valueOf((char) 123) + cleDansLOrdre.substring(indiceLettre + 1, cleDansLOrdre.length());
+    }
+    cleDansLOrdre = cleDansLOrdreTmp;
+
+    // Affichage de la clé
+    for(int i=0;i<cleDansLOrdre.length();++i){
+      System.out.print(String.valueOf(cleDansLOrdre.charAt(i)).toUpperCase()+"  ");
+    }
+    System.out.print("\n");
+
+    // Affichage du tableau
+    for (int i = 0; i < 6; ++i) {
+      for(int j=0;j<cle.length();++j){
+        System.out.print(tableauReponse[i][j]+"  ");
+      }
+      System.out.print("\n");
+    }
+
     return "";
   }
 
   private static String permuterSelonCle(String phraseChiffree, String cle) {
 
-    System.out.println("La clé utilisée est : " + cle);
-
+    // -----------------------------------------------------
+    // ----- PASSE LA PHRASE DANS UN TABLEAU ---------------
+    // -----------------------------------------------------
     String[][] tableauReponse = new String[6][cle.length()];
     int indicePhraseChiffree=0;
 
@@ -99,6 +143,7 @@ public class Adfgvx {
       }
     }
 
+    System.out.println("La clé utilisée est : " + cle);
     System.out.println("La clé est combinée à un tableau contenant le message chiffré");
     // Affichage de la clé
     for(int i=0;i<cle.length();++i){
@@ -114,6 +159,9 @@ public class Adfgvx {
       System.out.print("\n");
     }
 
+    // -----------------------------------------------------
+    // ----- PERMUTE LE TABLEAU SELON LA CLE ---------------
+    // -----------------------------------------------------
     String[][] tableauPermute = new String[6][cle.length()];
     String lettresCle = cle.toUpperCase();
     cle = "";
