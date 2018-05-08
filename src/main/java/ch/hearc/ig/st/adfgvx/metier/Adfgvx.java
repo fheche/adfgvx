@@ -15,6 +15,73 @@ public class Adfgvx {
     return phrasePermutee;
   }
 
+
+  public static String dechiffrerPhrase(String phraseADechiffrer, String cle) {
+    String phrasePermutee = "";
+    phrasePermutee = remettreReponseSelonCle(phraseADechiffrer,cle);
+    return "";
+  }
+
+  private static String remettreReponseSelonCle(String phraseADechiffrer, String cle) {
+    String lettresCle = cle.toUpperCase();
+    String cleDansLOrdre = cle.toUpperCase();
+    cle = "";
+    String lettreSuivante;
+    int indiceLettre = 0;
+
+    // -----------------------------------------------------
+    // ----- METS LA CLE DANS LORDRE ALPHABETIQUE ----------
+    // -----------------------------------------------------
+    // Parcours les lettres de la clé
+    for (int i = 0; i < lettresCle.length(); ++i) {
+
+      lettreSuivante = String.valueOf(lettresCle.charAt(0));
+      indiceLettre = 0;
+      for (int j = 0; j < lettresCle.length(); ++j) {
+        // Si la lettre est plus petite (alphabétiquement)
+        if (lettresCle.charAt(j) < lettreSuivante.charAt(0)) {
+          // Affecte la lettre et l'indice
+          lettreSuivante = String.valueOf(lettresCle.charAt(j));
+          indiceLettre = j;
+        }
+      }
+      cle += lettresCle.substring(indiceLettre, indiceLettre + 1);
+      lettresCle = lettresCle.substring(0, indiceLettre) + String.valueOf((char) 123) + lettresCle
+          .substring(indiceLettre + 1, lettresCle.length());
+
+    }
+    System.out.println("La clé passée ("+cleDansLOrdre+") est passée dans l'ordre alphabétique ("+cle+")");
+
+    String[][] tableauPermute = new String[6][cle.length()];
+    // Passe la phrase dans un tableau
+    int k=0;
+    for(int i=0;i<cle.length();++i) {
+      for(int j=0;j<6;++j){
+        if(phraseADechiffrer.length()>k) {
+          tableauPermute[j][i] = String.valueOf(phraseADechiffrer.charAt(k++));
+        }else{
+          tableauPermute[j][i] = "X";
+        }
+      }
+    }
+    System.out.println("Cette nouvelle clé est associée à un tableau avec la phrase codée");
+    // Affichage de la clé
+    for(int i=0;i<cle.length();++i){
+      System.out.print(String.valueOf(cle.charAt(i)).toUpperCase()+"  ");
+    }
+    System.out.print("\n");
+
+    // Affichage du tableau
+    for (int i = 0; i < 6; ++i) {
+      for(int j=0;j<cle.length();++j){
+        System.out.print(tableauPermute[i][j]+"  ");
+      }
+      System.out.print("\n");
+    }
+
+    return "";
+  }
+
   private static String permuterSelonCle(String phraseChiffree, String cle) {
 
     System.out.println("La clé utilisée est : " + cle);
@@ -118,11 +185,6 @@ public class Adfgvx {
       default:
         return "";
     }
-  }
-
-
-  public static String dechiffrerPhrase(String phraseADechiffrer, String cle) {
-    return "";
   }
 
   private static String dechiffrerPhrase(String phraseADechiffrer) {
