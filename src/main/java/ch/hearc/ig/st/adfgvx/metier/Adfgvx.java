@@ -70,21 +70,10 @@ public class Adfgvx {
         }
       }
     }
+
     System.out.println("Cette nouvelle clé est associée à un tableau avec la phrase codée");
-
-    // Affichage de la clé
-    for(int i=0;i<cle.length();++i){
-      System.out.print(String.valueOf(cle.charAt(i)).toUpperCase()+"  ");
-    }
-    System.out.print("\n");
-
-    // Affichage du tableau
-    for (int i = 0; i < 6; ++i) {
-      for(int j=0;j<cle.length();++j){
-        System.out.print(tableauPermute[i][j]+"  ");
-      }
-      System.out.print("\n");
-    }
+    afficherChaine(cle);
+    afficherTableau(tableauPermute);
 
     // -----------------------------------------------------
     // ----- REMETS LE TABLEAU DANS L'ORDRE SELON LA CLE ---
@@ -113,20 +102,8 @@ public class Adfgvx {
     cleDansLOrdre = cleDansLOrdreTmp;
 
     System.out.println("Puis le tableau est trié selon la clé");
-
-    // Affichage de la clé
-    for(int i=0;i<cleDansLOrdre.length();++i){
-      System.out.print(String.valueOf(cleDansLOrdre.charAt(i)).toUpperCase()+"  ");
-    }
-    System.out.print("\n");
-
-    // Affichage du tableau
-    for (int i = 0; i < 6; ++i) {
-      for(int j=0;j<cle.length();++j){
-        System.out.print(tableauReponse[i][j]+"  ");
-      }
-      System.out.print("\n");
-    }
+    afficherChaine(cleDansLOrdre);
+    afficherTableau(tableauReponse);
 
     // Construction de la chaine de réponse
     phraseADechiffrer = "";
@@ -159,19 +136,8 @@ public class Adfgvx {
 
     System.out.println("La clé utilisée est : " + cle);
     System.out.println("La clé est combinée à un tableau contenant le message chiffré");
-    // Affichage de la clé
-    for(int i=0;i<cle.length();++i){
-      System.out.print(String.valueOf(cle.charAt(i)).toUpperCase()+"  ");
-    }
-    System.out.print("\n");
-
-    // Affichage du tableau
-    for (int i = 0; i < 6; ++i) {
-      for(int j=0;j<cle.length();++j){
-        System.out.print(tableauReponse[i][j]+"  ");
-      }
-      System.out.print("\n");
-    }
+    afficherChaine(cle);
+    afficherTableau(tableauReponse);
 
     // -----------------------------------------------------
     // ----- PERMUTE LE TABLEAU SELON LA CLE ---------------
@@ -205,19 +171,9 @@ public class Adfgvx {
     }
 
     System.out.println("Le tableau est permuté selon l'ordre alphabétique de la clé");
-    // Affichage de la clé
-    for(int i=0;i<cle.length();++i){
-      System.out.print(String.valueOf(cle.charAt(i)).toUpperCase()+"  ");
-    }
-    System.out.print("\n");
 
-    // Affichage du tableau
-    for (int i = 0; i < 6; ++i) {
-      for(int j=0;j<cle.length();++j){
-        System.out.print(tableauPermute[i][j]+"  ");
-      }
-      System.out.print("\n");
-    }
+    afficherChaine(cle);
+    afficherTableau(tableauPermute);
 
     String phrasePermutee ="";
     for (int i = 0; i < lettresCle.length(); ++i) {
@@ -331,13 +287,6 @@ public class Adfgvx {
   }
 
   private static void initialiseTableauSubstitution() {
-    // Initialisation du tableau de substitution
-    // 8  T  B  W  R  Q
-    // P  4  C  G  2  9
-    // 3  O  5  M  X  E
-    // D  A  Z  J  S  Y
-    // L  H  7  U  V  0
-    // N  1  K  6  I  F
     tableauSubstitution[0][0] = "8";
     tableauSubstitution[0][1] = "t";
     tableauSubstitution[0][2] = "b";
@@ -406,6 +355,22 @@ public class Adfgvx {
       }
       for (int j = 0; j < 6; ++j) {
         System.out.print(tableauSubstitution[i][j] + "  ");
+      }
+      System.out.print("\n");
+    }
+  }
+
+  private static void afficherChaine(String chaine) {
+    for (int i = 0; i < chaine.length(); ++i) {
+      System.out.print(String.valueOf(chaine.charAt(i)).toUpperCase() + "  ");
+    }
+    System.out.print("\n");
+  }
+
+  private static void afficherTableau(String[][] tableau) {
+    for (int i = 0; i < tableau.length; ++i) {
+      for(int j=0;j<tableau[0].length;++j){
+        System.out.print(tableau[i][j]+"  ");
       }
       System.out.print("\n");
     }
